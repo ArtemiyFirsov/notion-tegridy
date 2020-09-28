@@ -16,7 +16,7 @@ def handler(event, context):
         text = 'отправила на добавление'
         request = event['request']['original_utterance']
         is_final_message = True
-        RunInThread(NotionAPI().add_todos, request.split("запятая"))
+        RunInThread(NotionAPI().add_todos, request.split(" и "))
     else:
         text = "что-то пошло не так"
         is_final_message = True
