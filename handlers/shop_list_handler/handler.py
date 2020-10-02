@@ -1,5 +1,6 @@
 import logging
 
+from Constants import constants
 from Helpers.Thread import RunInThread
 from Services.UnofficialNotionAPI import NotionAPI
 
@@ -16,7 +17,7 @@ def handler(event, context):
         text = 'отправила на добавление'
         request = event['request']['original_utterance']
         is_final_message = True
-        RunInThread(NotionAPI().add_todos, request.split(" и "))
+        RunInThread(NotionAPI().add_todos, constants.ShoppingListURL, request.split(" и "))
     else:
         text = "что-то пошло не так"
         is_final_message = True
