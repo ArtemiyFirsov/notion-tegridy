@@ -1,3 +1,8 @@
+import os
+from Constants import constants
+
+os.environ["NOTION_DATA_DIR"] = constants.NotionCachePath
+
 import notion.block as block
 import notion.client as clientModule
 from typing import List
