@@ -20,7 +20,7 @@ if os.name == "nt":
     _const.NotionCachePath = r"D:\notion-tegridy\.notion-py"
 elif os.name == "posix":
     if "pyto" in sys.executable.lower():
-        _const.NotionCachePath = "/private/var/mobile/Containers/Shared/AppGroup/0E89090C-35CC-4B33-A31D-9A297BB590C1/File Provider Storage/Repositories/notion-tegridy/.notion-py"
+        _const.NotionCachePath = "/private/var/mobile/Containers/Shared/AppGroup/C12E6298-2B19-4AFF-AFB2-CD945A685C68/File Provider Storage/Repositories/notion-tegridy/.notion-py"
     else:
         raise Exception("Unknown OS")
 else:
