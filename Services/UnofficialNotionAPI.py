@@ -1,15 +1,15 @@
-from typing import List
-import notion.client as clientModule
 import notion.block as block
-import os
+import notion.client as clientModule
+from typing import List
 
+from Constants import constants
 from Services.BaseNotionWrapper import BaseNotionAPI
 
 
 class NotionAPI(BaseNotionAPI):
     def add_todos(self, todos: List[str]):
-        token_v2 = os.environ["token_v2"]
-        page_url = os.environ["page_url"]
+        token_v2 = constants.NotionTokenV2
+        page_url = constants.ShoppingListURL
 
         client = clientModule.NotionClient(token_v2=token_v2)
         page = client.get_block(page_url)
