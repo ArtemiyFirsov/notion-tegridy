@@ -16,15 +16,12 @@ page = client.get_block(page_url)
 print(token_v2, page_url)
 
 
-first_unchecked = None
 children_filtered = [i for i in page.children if type(i) == block.basic.ToDoBlock and i.title]
 unchecked_count = len([i for i in page.children if not i.checked])
 curr_unchecked_count = 0
-for child in children_filtered:
+for i, child in enumerate(children_filtered):
     if curr_unchecked_count == unchecked_count:
         break
-    if type(child) != block.basic.ToDoBlock or not child.title:
-	    continue
-    if not child.checked:
+    if not child.checked and i > 0:
         child.move_to(page.children[0], "before")
         curr_unchecked_count += 1
