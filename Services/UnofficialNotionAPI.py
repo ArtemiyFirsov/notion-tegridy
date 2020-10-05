@@ -1,4 +1,6 @@
 import os
+from collections import Counter
+
 from Constants import constants
 
 os.environ["NOTION_DATA_DIR"] = constants.NotionCachePath
@@ -30,15 +32,36 @@ class NotionAPI(BaseNotionAPI):
                 child.move_to(page.children[0], "before")
 
     def sort_todos(self, page_url: str):
-        page_url = constants.ShoppingListURL
         page = self._client.get_block(page_url)
 
-        children_filtered = [i for i in page.children if type(i) == block.TodoBlock and i.title]
-        unchecked_count = len([i for i in page.children if not i.checked])
-        curr_unchecked_count = 0
-        for i, child in enumerate(children_filtered):
-            if curr_unchecked_count == unchecked_count:
-                break
-            if not child.checked and i > 0:
+        children_filtered = {i: v for i, v in enumerate(page.children) if type(v) == block.TodoBlock and v.title and not v.checked}
+
+        for ind, child in children_filtered.items():
+            if child.id == page.children[0].id:
+                continue
+
+            if not page.children[ind-1].checked:
+                continue
+
+            if not child.checked:
                 child.move_to(page.children[0], "before")
-                curr_unchecked_count += 1
+
+    def delete_todos_duplicates(self, page_url: str):
+        page = self._client.get_block(page_url)
+
+        prev_list = {}
+        for child in page.children:
+            norm = child.title.lower().strip()
+            if norm not in prev_list:
+                prev_list[norm] = child
+                continue
+
+            prev_child = prev_list[norm]
+
+            if not child.checked and prev_child.checked:
+                prev_child.checked = False
+
+            child.remove(permanently=True)
+
+
+
