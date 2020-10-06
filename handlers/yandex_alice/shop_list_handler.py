@@ -2,7 +2,7 @@ import logging
 
 from Constants import constants
 from Helpers.Thread import RunInThread
-from Services.UnofficialNotionAPI import NotionAPI
+from Services.notion.UnofficialNotionAPI import NotionAPI
 
 
 def handler(event, context):
