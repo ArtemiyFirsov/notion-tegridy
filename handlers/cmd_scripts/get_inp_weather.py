@@ -1,3 +1,7 @@
 from Services.weather.INPWeatherAPI import INPWeatherAPI
 
-print(INPWeatherAPI().get_current_temperature())
+try:
+    result = INPWeatherAPI().get_current_temperature()
+    print(result)
+except:
+    print("ERROR")
