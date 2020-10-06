@@ -1,6 +1,7 @@
 import re
 
 import requests
+from bs4 import BeautifulSoup, NavigableString
 
 from Services.weather.BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_to_fahrenheit
 
@@ -10,11 +11,29 @@ class INPWeatherAPI(BaseWeatherAPI):
         r = requests.get("http://thermo.inp.nsk.su")
         r.encoding = 'utf-8'
 
-        match = re.search(r"images/temp/temp\d+\.png", r.text)
+        soup = BeautifulSoup(r.text, 'html.parser')
 
-        if not match:
+        result = soup.find(id="temp_block")
+
+        if not result:
             raise Exception("Weather data not available")
 
-        temp = float(match.group(0).replace("images/temp/temp", "").replace(".png", ""))
+        results = list(result.children)
+
+        if len(results) == 0:
+            raise Exception("Weather data not available")
+
+        temp = ""
+        for res in results:
+            if type(res) == NavigableString:
+                continue
+            match = re.search(r"\d", res.get("src"))
+
+            if not match:
+                continue
+
+            temp += match.group(0)
+
+        temp = float(temp)
 
         return temp if scale == TempScale.Celcius else celcius_to_fahrenheit(temp)
