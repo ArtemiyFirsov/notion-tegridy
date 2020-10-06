@@ -1,5 +1,4 @@
 import os
-from collections import Counter
 
 from Constants import constants
 
@@ -10,7 +9,7 @@ import notion.client as clientModule
 from typing import List
 
 from Constants import constants
-from Services.BaseNotionWrapper import BaseNotionAPI
+from Services.notion.BaseNotionWrapper import BaseNotionAPI
 
 
 class NotionAPI(BaseNotionAPI):
