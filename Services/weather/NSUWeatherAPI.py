@@ -2,7 +2,7 @@ import re
 
 import requests
 
-from Services.weather.BaseWeatherAPI import BaseWeatherAPI, TempScale
+from Services.weather.BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_to_fahrenheit
 
 
 class NSUWeatherAPI(BaseWeatherAPI):
@@ -10,7 +10,7 @@ class NSUWeatherAPI(BaseWeatherAPI):
         r = requests.get("http://weather.nsu.ru/loadata.php")
         r.encoding = 'utf-8'
 
-        match = re.search("Температура около НГУ \d+\.\d+", r.text)
+        match = re.search(r"Температура около НГУ \d+\.\d+", r.text)
 
         if not match:
             raise Exception("Weather data not available")

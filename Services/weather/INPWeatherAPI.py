@@ -10,7 +10,7 @@ class INPWeatherAPI(BaseWeatherAPI):
         r = requests.get("http://thermo.inp.nsk.su")
         r.encoding = 'utf-8'
 
-        match = re.search("images/temp/temp\d+\.png", r.text)
+        match = re.search(r"images/temp/temp\d+\.png", r.text)
 
         if not match:
             raise Exception("Weather data not available")
