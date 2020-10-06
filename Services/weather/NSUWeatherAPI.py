@@ -10,7 +10,7 @@ class NSUWeatherAPI(BaseWeatherAPI):
         r = requests.get("http://weather.nsu.ru/loadata.php")
         r.encoding = 'utf-8'
 
-        match = re.search(r"Температура около НГУ \d+\.\d+", r.text)
+        match = re.search(r"Температура около НГУ (?:-)\d+\.\d+", r.text)
 
         if not match:
             raise Exception("Weather data not available")

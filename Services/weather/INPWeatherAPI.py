@@ -1,7 +1,7 @@
 import re
 
 import requests
-from bs4 import BeautifulSoup, NavigableString
+from bs4 import BeautifulSoup
 
 from Services.weather.BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_to_fahrenheit
 
@@ -25,9 +25,10 @@ class INPWeatherAPI(BaseWeatherAPI):
 
         temp = ""
         for res in results:
-            if type(res) == NavigableString:
+            try:
+                match = re.search(r"\d", res.get("src"))
+            except:
                 continue
-            match = re.search(r"\d", res.get("src"))
 
             if not match:
                 continue
