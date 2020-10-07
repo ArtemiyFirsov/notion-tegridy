@@ -26,10 +26,14 @@ class INPWeatherAPI(BaseWeatherAPI):
         temp = ""
         for res in results:
             try:
-                match = re.search(r"\d", res.get("src"))
+                src = res.get("src")
             except:
                 continue
 
+            if "-" in src:
+                temp += "-"
+
+            match = re.search(r"\d", res.get("src"))
             if not match:
                 continue
 
