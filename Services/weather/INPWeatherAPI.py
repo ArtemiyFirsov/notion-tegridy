@@ -8,7 +8,7 @@ from Services.weather.BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_t
 
 class INPWeatherAPI(BaseWeatherAPI):
     def get_current_temperature(self, scale: TempScale = TempScale.Celcius) -> float:
-        r = requests.get("http://thermo.inp.nsk.su")
+        r = requests.get("http://thermo.inp.nsk.su", stream=False)
         r.encoding = 'utf-8'
 
         soup = BeautifulSoup(r.text, 'html.parser')

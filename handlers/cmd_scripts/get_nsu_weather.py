@@ -4,5 +4,5 @@ from Services.weather.NSUWeatherAPI import NSUWeatherAPI
 try:
     result = NSUWeatherAPI().get_current_temperature()
     print(result)
-except:
+except Exception as e:
     print("ERROR")

@@ -7,7 +7,7 @@ from Services.weather.BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_t
 
 class NSUWeatherAPI(BaseWeatherAPI):
     def get_current_temperature(self, scale: TempScale = TempScale.Celcius) -> float:
-        r = requests.get("http://weather.nsu.ru/loadata.php")
+        r = requests.get("http://weather.nsu.ru/loadata.php", stream=False)
         r.encoding = 'utf-8'
 
         match = re.search(r"Температура около НГУ -?\d+\.\d+", r.text)
