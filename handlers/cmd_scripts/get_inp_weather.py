@@ -1,9 +1,5 @@
-import logging
-
-logging.basicConfig()
-logging.getLogger().setLevel(logging.ERROR)
-logging.captureWarnings(True)
-
+from Helpers.stdIOhelpers import disable_warnings
+disable_warnings()
 
 from Services.weather.INPWeatherAPI import INPWeatherAPI
 
