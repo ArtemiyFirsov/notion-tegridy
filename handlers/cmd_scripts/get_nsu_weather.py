@@ -1,4 +1,9 @@
-from Helpers.Clear import clear
+import logging
+
+logging.basicConfig()
+logging.getLogger().setLevel(logging.ERROR)
+logging.captureWarnings(True)
+
 from Services.weather.NSUWeatherAPI import NSUWeatherAPI
 
 try:
