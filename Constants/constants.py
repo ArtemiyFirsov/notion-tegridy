@@ -29,7 +29,7 @@ elif os.name == "posix":
 else:
     raise Exception("Unknown OS")
 
-_const.NotionTokenV2 = "098a4f3ea3d86283e123f3dd41ec2d0d0bab865032aee44dfe3a85454eb2faeb8389446453727a338cf606d9e307a2fcf91ad53c810510415703156619a193df728ed9d2580f836dd3c3b6d5a950"
+_const.NotionTokenV2 = "54693edac8081201cf9f3100879d42581f3d6e63843fabe76fcf20cc15984f8e4cc4d10b44be331eeaf17487ed764d49069d4f8c4927e8da02ce6f39c7de93a33bbbf9a5de1e2d48d2f6bc430e05"
 _const.ShoppingListURL = "https://www.notion.so/762a5a2cb95b48848af8752ca7336898"
 
 
