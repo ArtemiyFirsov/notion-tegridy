@@ -18,7 +18,7 @@ def handler(event, context):
         text = 'отправила на добавление'
         request = event['request']['original_utterance']
         is_final_message = True
-        RunInThread(NotionAPI(TOKEN_V2).add_todos, SHOPPING_LIST_URL, request.split(" и "))
+        RunInThread(NotionAPI(TOKEN_V2).add_todos, SHOPPING_LIST_URL, request.split(" и "))l
     else:
         text = "что-то пошло не так"
         is_final_message = True
