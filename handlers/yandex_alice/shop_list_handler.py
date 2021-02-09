@@ -5,6 +5,7 @@ from Helpers.Thread import RunInThread
 from Services.notion.UnofficialNotionAPI import NotionAPI
 
 
+# todo: it is now broken
 def handler(event, context):
     is_final_message = False
     logging.info(event)
@@ -17,7 +18,7 @@ def handler(event, context):
         text = 'отправила на добавление'
         request = event['request']['original_utterance']
         is_final_message = True
-        RunInThread(NotionAPI().add_todos, constants.ShoppingListURL, request.split(" и "))
+        RunInThread(NotionAPI(TOKEN_V2).add_todos, SHOPPING_LIST_URL, request.split(" и "))
     else:
         text = "что-то пошло не так"
         is_final_message = True

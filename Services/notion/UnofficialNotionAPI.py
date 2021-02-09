@@ -13,8 +13,8 @@ from Services.notion.BaseNotionWrapper import BaseNotionAPI
 
 
 class NotionAPI(BaseNotionAPI):
-    def __init__(self):
-        token_v2 = constants.NotionTokenV2
+    def __init__(self, notion_token_v2: str):
+        token_v2 = notion_token_v2
         self._client = clientModule.NotionClient(token_v2=token_v2)
 
     def add_todos(self, page_url: str, todos: List[str]):
