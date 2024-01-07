@@ -3,7 +3,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-from Services.weather.BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_to_fahrenheit
+from BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_to_fahrenheit
 
 
 class INPWeatherAPI(BaseWeatherAPI):

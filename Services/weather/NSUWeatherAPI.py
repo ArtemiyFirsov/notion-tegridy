@@ -2,7 +2,7 @@ import re
 
 import requests
 
-from Services.weather.BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_to_fahrenheit
+from BaseWeatherAPI import BaseWeatherAPI, TempScale, celcius_to_fahrenheit
 
 
 class NSUWeatherAPI(BaseWeatherAPI):
