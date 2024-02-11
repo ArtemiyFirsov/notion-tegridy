@@ -2,7 +2,7 @@ from typing import List
 import httpx
 from notion_client import Client
 
-from BaseNotionWrapper import BaseNotionAPI
+from .BaseNotionWrapper import BaseNotionAPI
 
 
 
@@ -98,6 +98,7 @@ class NotionAPI(BaseNotionAPI):
                                                 after=append_after)
 
             self._notion.blocks.delete(todo["id"])
+        self._update_todo_counter(page_url)
 
     def delete_todos_duplicates(self, page_url: str):
         page_id = [i for i in page_url.split("/") if len(i) > 0][-1]
@@ -123,5 +124,4 @@ class NotionAPI(BaseNotionAPI):
                 self._notion.blocks.update(block_id=prev_child["id"], to_do={"checked": False})
 
             self._notion.blocks.delete(block_id=child["id"])
-        
         self._update_todo_counter(page_url)
